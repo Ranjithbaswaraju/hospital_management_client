@@ -1,127 +1,100 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function DoctorProfile() {
+import axios from "axios";
 
-  const [profile, setProfile] = useState({});
+const Profile = () => {
+
+  const [doctor, setDoctor] =
+    useState(null);
+
+  const token =
+    localStorage.getItem("token");
 
   const fetchProfile = async () => {
-
     try {
 
-      const token = localStorage.getItem("token");
+      const response =
+        await axios.get(
+          "http://localhost:3100/api/doctor/profile",
 
-      const response = await axios.get(
-        "http://localhost:3100/api/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+          {
+            headers: {
+              Authorization:
+                `Bearer ${token}`,
+            },
+          }
+        );
+
+      console.log(response.data);
+
+      setDoctor(
+        response.data.doctor
       );
-
-      setProfile(response.data.user);
 
     } catch (err) {
 
       console.log(err);
-
     }
   };
 
   useEffect(() => {
-
     fetchProfile();
-
   }, []);
 
+  if (!doctor) {
+    return (
+      <div className="p-10">
+        Loading...
+      </div>
+    );
+  }
+
   return (
+    <div className="p-6">
 
-    <div className="p-8">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 max-w-md">
 
-      <div className="bg-white rounded-2xl shadow p-8 max-w-3xl">
+        <div className="flex flex-col items-center text-center">
 
-        {/* Top */}
-        <div className="flex items-center gap-6 mb-8">
+          <img
+            src={`http://localhost:3100/uploads/${doctor.image}`}
+            alt="doctor"
+            className="w-24 h-24 rounded-full object-cover mb-4"
+          />
 
-          <div className="w-24 h-24 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-3xl font-bold">
+          <h2 className="text-xl font-bold text-slate-800">
+            {doctor.userId?.name}
+          </h2>
 
-            {profile.name?.charAt(0)}
+          <p className="text-sm text-slate-500 mb-3">
+            {doctor.specialization}
+          </p>
 
-          </div>
+          <div className="space-y-2 text-sm text-slate-600">
 
-
-
-          <div>
-
-            <h1 className="text-3xl font-bold">
-              Dr. {profile.name}
-            </h1>
-
-            <p className="text-slate-500 mt-1">
-              {profile.specialization}
+            <p>
+              <strong>Email:</strong>
+              {" "}
+              {doctor.userId?.email}
             </p>
 
-          </div>
-
-        </div>
-
-
-
-        {/* Details */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-          <div>
-
-            <p className="text-sm text-slate-500">
-              Email
+            <p>
+              <strong>Experience:</strong>
+              {" "}
+              {doctor.experience} Years
             </p>
 
-            <h2 className="font-medium">
-              {profile.email}
-            </h2>
-
-          </div>
-
-
-
-          <div>
-
-            <p className="text-sm text-slate-500">
-              Phone
+            <p>
+              <strong>Fees:</strong>
+              {" "}
+              ₹{doctor.fees}
             </p>
 
-            <h2 className="font-medium">
-              {profile.phone}
-            </h2>
-
-          </div>
-
-
-
-          <div>
-
-            <p className="text-sm text-slate-500">
-              Experience
+            <p>
+              <strong>Hospital:</strong>
+              {" "}
+              {doctor.hospital}
             </p>
-
-            <h2 className="font-medium">
-              {profile.experience} Years
-            </h2>
-
-          </div>
-
-
-
-          <div>
-
-            <p className="text-sm text-slate-500">
-              Qualification
-            </p>
-
-            <h2 className="font-medium">
-              {profile.qualification}
-            </h2>
 
           </div>
 
@@ -131,4 +104,6 @@ export default function DoctorProfile() {
 
     </div>
   );
-}
+};
+
+export default Profile;

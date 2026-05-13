@@ -42,7 +42,7 @@ export default function AdminLayout() {
   return (
     <div className="min-h-screen flex bg-slate-50">
       {/* Sidebar */}
-      <aside className="w-52 shrink-0 bg-[#0a2d5a] flex flex-col">
+      <aside className="fixed left-0 top-0 h-screen w-52 bg-[#0a2d5a] flex flex-col z-50">
         {/* Logo */}
         <div className="flex items-center gap-2.5 px-5 py-6 text-white font-bold text-base">
           <span className="text-xl">🩺</span>
@@ -72,14 +72,7 @@ export default function AdminLayout() {
           {/* Line */}
           <div className="mx-2 my-3 border-t border-white/10"></div>
 
-          {/* Settings */}
-          <NavLink
-            to="/admin/settings"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-white/60 hover:text-white hover:bg-white/10 transition-all"
-          >
-            <span>⚙️</span>
-            Settings
-          </NavLink>
+          
 
           {/* Logout */}
           <button
@@ -108,7 +101,7 @@ export default function AdminLayout() {
       </aside>
 
       {/* Right Side */}
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col min-h-screen ml-52">
         {/* Main Content */}
         <main className="flex-1 min-h-[85vh] p-6">
           <Outlet />

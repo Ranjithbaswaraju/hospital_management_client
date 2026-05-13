@@ -642,7 +642,7 @@ export default function DoctorAppointments() {
         }
       );
 
-      console.log(response.data);
+      // console.log(response.data);
 
       alert(`Appointment ${status}`);
 

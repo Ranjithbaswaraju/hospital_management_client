@@ -34,6 +34,11 @@ function App() {
 
         {/* Patient Layout */}
         <Route path="/patient" element={<PatientLayout />}>
+
+         <Route
+    index
+    element={<BrowseDoctors />}
+  />
           {/* Browse Doctors */}
           <Route path="browse" element={<BrowseDoctors />} />
 
