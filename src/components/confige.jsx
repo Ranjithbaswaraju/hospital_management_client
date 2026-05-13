@@ -1,1 +1,1 @@
-export const BaseUrl="https://hospital-management-servernod.onrender.com"
+export const BaseUrl="https://hospital-management-server-r1gm.onrender.com"
