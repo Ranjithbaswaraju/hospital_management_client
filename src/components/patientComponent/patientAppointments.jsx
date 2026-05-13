@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BaseUrl } from "../confige";
 
 const STATUS_COLORS = {
   booked: "bg-blue-50 text-blue-700",
@@ -31,7 +32,7 @@ export default function MyAppointments() {
       setLoading(true);
 
       const response = await axios.get(
-        "http://localhost:3100/api/appointment/my-appointment",
+        `${BaseUrl}/api/appointment/my-appointment`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -58,7 +59,7 @@ export default function MyAppointments() {
     try {
 
       const response = await axios.put(
-        `http://localhost:3100/api/appointment/cancel/${id}`,
+        `${BaseUrl}/api/appointment/cancel/${id}`,
         {},
         {
           headers: {

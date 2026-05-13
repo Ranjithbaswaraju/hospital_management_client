@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+import { BaseUrl } from "../../confige";
 
 export default function Appointments() {
   const [appointments, setAppointments] = useState([]);
@@ -14,7 +15,7 @@ export default function Appointments() {
   const fetchAppointments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3100/api/admin/appointments",
+        `${BaseUrl}/api/admin/appointments`,
 
         {
           headers: {

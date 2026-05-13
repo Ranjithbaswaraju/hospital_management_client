@@ -5,6 +5,8 @@
 //         {doctor.userId?.name?.charAt(0)}
 //       </div>
 
+import { BaseUrl } from "../confige";
+
 //       <h4 className="font-semibold text-slate-800 text-sm mb-1">
 //         {doctor.userId?.name}
 //       </h4>
@@ -37,7 +39,7 @@ export default function DoctorCard({
     <div className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-md transition-shadow">
 
       <img
-        src={`http://localhost:3100/uploads/${doctor.image}`}
+        src={`${BaseUrl}/uploads/${doctor.image}`}
         alt="doctor"
         className="w-16 h-16 rounded-full object-cover mb-3"
       />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+import { BaseUrl } from "../../confige";
 
 export default function Patients() {
   const [patients, setPatients] = useState([]);
@@ -14,7 +15,7 @@ export default function Patients() {
   const fetchPatients = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3100/api/admin/patients",
+        `${BaseUrl}/api/admin/patients`,
 
         {
           headers: {

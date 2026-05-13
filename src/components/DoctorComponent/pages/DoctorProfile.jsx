@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+import { BaseUrl } from "../../confige";
 
 const Profile = () => {
 
@@ -15,7 +16,7 @@ const Profile = () => {
 
       const response =
         await axios.get(
-          "http://localhost:3100/api/doctor/profile",
+          `${BaseUrl}/api/doctor/profile`,
 
           {
             headers: {
@@ -57,7 +58,7 @@ const Profile = () => {
         <div className="flex flex-col items-center text-center">
 
           <img
-            src={`http://localhost:3100/uploads/${doctor.image}`}
+            src={`${BaseUrl}/uploads/${doctor.image}`}
             alt="doctor"
             className="w-24 h-24 rounded-full object-cover mb-4"
           />

@@ -3,6 +3,7 @@ import axios from "axios";
 
 import DoctorCard from "../DoctorCard";
 import BookingModal from "../bookingModel";
+import { BaseUrl } from "../../confige";
 
 export default function BrowseDoctors() {
   const [activeSpec, setActiveSpec] = useState("All");
@@ -29,7 +30,7 @@ export default function BrowseDoctors() {
       setLoading(true);
 
       const response = await axios.get(
-        "http://localhost:3100/api/patient/doctors",
+        `${BaseUrl}/api/patient/doctors`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -58,7 +59,7 @@ export default function BrowseDoctors() {
         fetchDoctors();
       } else {
         const response = await axios.get(
-          `http://localhost:3100/api/patient/specialization/${type}`,
+          `${BaseUrl}/api/patient/specialization/${type}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

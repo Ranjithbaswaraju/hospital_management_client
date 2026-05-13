@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BaseUrl } from "../confige";
 
 export default function BookingModal({ doctor, onClose }) {
   const [date, setDate] = useState("");
@@ -18,7 +19,7 @@ export default function BookingModal({ doctor, onClose }) {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        `http://localhost:3100/api/patient/slots/${doctor.userId._id}/${selectedDate}`,
+        `${BaseUrl}/api/patient/slots/${doctor.userId._id}/${selectedDate}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +58,7 @@ export default function BookingModal({ doctor, onClose }) {
       const selectedSlot = slots.find((s) => s.time === slot);
 
       const response = await axios.post(
-        "http://localhost:3100/api/appointment/book",
+        `${BaseUrl}/api/appointment/book`,
         {
           doctorId: doctor._id,
           slotId: slot,

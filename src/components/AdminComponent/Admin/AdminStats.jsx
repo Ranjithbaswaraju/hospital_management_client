@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import { BaseUrl } from "../../confige";
 
 export default function AdminOverview() {
   const [stats, setStats] = useState({});
@@ -19,7 +20,7 @@ export default function AdminOverview() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "http://localhost:3100/api/admin/stats",
+        `${BaseUrl}/api/admin/stats`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import axios from "axios";
+import { BaseUrl } from "../../confige";
 
 export default function DoctorSchedule() {
   const [activeDays, setActiveDays] = useState([]);
@@ -37,7 +38,7 @@ export default function DoctorSchedule() {
       const doctorId = user?._id
       console.log(doctorId)
       const response = await axios.post(
-        "http://localhost:3100/api/doctor/add-slot",
+        `${BaseUrl}/api/doctor/add-slot`,
 
         {
           doctorId,
