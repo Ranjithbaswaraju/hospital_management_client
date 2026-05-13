@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import { BaseUrl } from "../confige";
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -14,7 +17,7 @@ export default function LoginPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3100/api/auth/login",
+        `${BaseUrl}/api/auth/login`,
         {
           email,
           password,
