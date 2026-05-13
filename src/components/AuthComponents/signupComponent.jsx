@@ -15,8 +15,7 @@ export default function RegisterPage() {
     role: "patient",
   });
 
-  const handle = (k) => (e) =>
-    setForm({ ...form, [k]: e.target.value });
+  const handle = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +35,7 @@ export default function RegisterPage() {
           email: form.email,
           password: form.password,
           role: form.role,
-        }
+        },
       );
 
       console.log(response.data);
@@ -44,32 +43,24 @@ export default function RegisterPage() {
       alert(response.data.message);
 
       navigate("/login");
-
     } catch (err) {
       console.log(err);
 
-      alert(
-        err.response?.data?.message ||
-        "Registration Failed"
-      );
+      alert(err.response?.data?.message || "Registration Failed");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
       <div className="w-full max-w-4xl flex rounded-2xl overflow-hidden shadow-lg border border-slate-200">
-
         {/* Left Panel */}
         <div className="hidden md:flex flex-col justify-center w-5/12 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 p-10 text-white">
-
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl">
               🩺
             </div>
 
-            <span className="text-xl font-bold tracking-tight">
-              MediBook
-            </span>
+            <span className="text-xl font-bold tracking-tight">MediBook</span>
           </div>
 
           <h2 className="text-2xl font-bold mb-3 leading-snug">
@@ -102,17 +93,13 @@ export default function RegisterPage() {
 
         {/* Right Panel */}
         <div className="flex-1 bg-white p-10 flex flex-col justify-center">
-
           <h3 className="text-xl font-semibold text-slate-800 mb-1">
             Create your account
           </h3>
 
-          <p className="text-sm text-slate-500 mb-7">
-            Register to get started
-          </p>
+          <p className="text-sm text-slate-500 mb-7">Register to get started</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-
             {/* Name */}
             <div>
               <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1.5">
@@ -144,7 +131,6 @@ export default function RegisterPage() {
 
             {/* Phone + DOB */}
             <div className="grid grid-cols-2 gap-4">
-
               <div>
                 <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1.5">
                   Phone
@@ -191,7 +177,6 @@ export default function RegisterPage() {
 
             {/* Password */}
             <div className="grid grid-cols-2 gap-4">
-
               <div>
                 <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1.5">
                   Password
