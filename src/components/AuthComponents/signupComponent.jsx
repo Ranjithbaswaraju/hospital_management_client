@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BaseUrl } from "../confige";
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function RegisterPage() {
     e.preventDefault();
 
     if (form.password !== form.confirm) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match",{autoClose: 3000});
       return;
     }
 
@@ -41,13 +42,13 @@ export default function RegisterPage() {
 
       console.log(response.data);
 
-      alert(response.data.message);
+      toast.success(response.data.message,{autoClose: 3000});
 
       navigate("/login");
     } catch (err) {
       console.log(err);
 
-      alert(err.response?.data?.message || "Registration Failed");
+      toast.error(err.response?.data?.message || "Registration Failed",{autoClose: 3000});
     }
   };
 

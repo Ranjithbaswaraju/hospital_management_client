@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import axios from "axios";
 import { BaseUrl } from "../../confige";
+import { toast } from "react-toastify";
 
 export default function DoctorSchedule() {
   const [activeDays, setActiveDays] = useState([]);
@@ -70,7 +71,7 @@ export default function DoctorSchedule() {
     } catch (err) {
       console.log(err);
 
-      alert("Unable to save schedule");
+      toast.error("Unable to save schedule",{autoClose: 3000});
     }
   };
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BaseUrl } from "../confige";
+import { toast } from "react-toastify";
 
 export default function BookingModal({ doctor, onClose }) {
   const [date, setDate] = useState("");
@@ -33,7 +34,7 @@ export default function BookingModal({ doctor, onClose }) {
     } catch (err) {
       console.log(err);
 
-      alert("Unable to fetch slots");
+      toast.error("Unable to fetch slots",{autoClose: 3000});
     }
   };
 
@@ -48,7 +49,7 @@ export default function BookingModal({ doctor, onClose }) {
   const handleBook = async () => {
     try {
       if (!date || !slot) {
-        alert("Please select date and slot");
+        toast.error("Please select date and slot",{autoClose: 3000});
         return;
       }
 
@@ -73,13 +74,13 @@ export default function BookingModal({ doctor, onClose }) {
 
       console.log(response.data);
 
-      alert("Appointment Booked Successfully");
+      toast.success("Appointment Booked Successfully",{autoClose: 3000});
 
       setBooked(true);
     } catch (err) {
       console.log(err);
 
-      alert(err.response?.data?.message || "Unable to book appointment");
+      toast.error(err.response?.data?.message || "Unable to book appointment",{autoClose: 3000});
     }
   };
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BaseUrl } from "../../confige";
+import { toast } from "react-toastify";
 
 const STATUS_COLORS = {
   booked: "bg-blue-50 text-blue-700",
@@ -47,7 +48,7 @@ export default function DoctorAppointments() {
     } catch (err) {
       console.log(err);
 
-      alert("Unable To Fetch Appointments");
+      toast.error("Unable To Fetch Appointments",{autoClose: 3000});
 
     } finally {
       setLoading(false);
@@ -72,14 +73,14 @@ export default function DoctorAppointments() {
 
       // console.log(response.data);
 
-      alert(`Appointment ${status}`);
+      toast.success(`Appointment ${status}`,{autoClose: 3000});
 
       fetchAppointments();
 
     } catch (err) {
       console.log(err);
 
-      alert("Unable To Update Status");
+      toast.error("Unable To Update Status",{autoClose: 3000});
     }
   };
 

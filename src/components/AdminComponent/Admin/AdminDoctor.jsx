@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 import { BaseUrl } from "../../confige";
+import { toast } from "react-toastify";
 
 // specialization list
 const specializations = [
@@ -123,6 +124,7 @@ function AddDoctorModal({
       );
 
       fetchDoctors();
+      toast.success("doctor added succesfully")
 
       onClose();
 
@@ -130,7 +132,7 @@ function AddDoctorModal({
 
       console.log(err);
 
-      alert("Unable to Add Doctor");
+      toast.error("Unable to Add Doctor",{autoClose: 3000});
     }
   };
 
@@ -331,6 +333,7 @@ export default function ManageDoctors() {
       );
 
       fetchDoctors();
+      toast.success("doctor deleted succesfully",{autoClose: 3000})
 
     } catch (err) {
 

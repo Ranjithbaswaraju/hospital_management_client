@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { BaseUrl } from "../confige";
+import { toast } from "react-toastify";
 
 
 export default function LoginPage() {
@@ -32,7 +33,7 @@ export default function LoginPage() {
       // store user
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      alert(response.data.message);
+      toast.success(response.data.message,{autoClose: 3000});
 
       // role based navigation
       const role = response.data.user.role;
@@ -48,11 +49,11 @@ export default function LoginPage() {
       console.log(err);
 
       if (err.response?.data?.message === "User Not Found") {
-        alert("User Not Found");
+        toast.error("User Not Found",{autoClose: 3000});
       } else if (err.response?.data?.message === "Invalid Credentials") {
-        alert("Invalid Email or Password");
+        toast.error("Invalid Email or Password",{autoClose: 3000});
       } else {
-        alert(err.response?.data?.message || "Unable to Login");
+        toast.error(err.response?.data?.message || "Unable to Login",{autoClose: 3000});
       }
     }
   };
@@ -151,9 +152,7 @@ export default function LoginPage() {
                 Remember me
               </label>
 
-              <span className="text-sm text-blue-600 cursor-pointer hover:underline">
-                Forgot password?
-              </span>
+              
             </div>
 
             {/* Button */}

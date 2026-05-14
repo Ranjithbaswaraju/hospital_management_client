@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import { toast } from "react-toastify";
 
 const navItems = [
   { to: "/patient/browse", label: "Find a Doctor" },
@@ -12,7 +13,7 @@ export default function PatientLayout() {
   const Logout = () => {
     localStorage.removeItem("token");
 
-    alert("Logout Successfully");
+    toast.success("Logout Successfully",{autoClose: 3000});
 
     navigate("/login");
   };

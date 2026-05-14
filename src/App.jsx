@@ -4,6 +4,7 @@ import "./App.css";
 
 
 
+
 import LoginPage from "./components/AuthComponents/loginComponent";
 
 import RegisterPage from "./components/AuthComponents/signupComponent";
@@ -23,9 +24,13 @@ import Appointments from "./components/AdminComponent/Admin/AdminAppointment";
 import AdminOverview from "./components/AdminComponent/Admin/AdminStats";
 import DoctorProfile from "./components/DoctorComponent/pages/DoctorProfile";
 import HomePage from "./components/pages/HomePage";
+import { ToastContainer,toast } from "react-toastify";
 
 function App() {
   return (
+    <>
+    
+    <ToastContainer/>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -61,6 +66,8 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </>
+    
   );
 }
 

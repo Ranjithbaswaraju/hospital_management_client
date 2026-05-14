@@ -4,6 +4,7 @@ import axios from "axios";
 import DoctorCard from "../DoctorCard";
 import BookingModal from "../bookingModel";
 import { BaseUrl } from "../../confige";
+import { toast } from "react-toastify";
 
 export default function BrowseDoctors() {
   const [activeSpec, setActiveSpec] = useState("All");
@@ -42,7 +43,7 @@ export default function BrowseDoctors() {
     } catch (err) {
       console.log(err);
 
-      alert("Unable to fetch doctors");
+      toast.error("Unable to fetch doctors",{autoClose: 3000});
     } finally {
       setLoading(false);
     }
@@ -72,7 +73,7 @@ export default function BrowseDoctors() {
     } catch (err) {
       console.log(err);
 
-      alert("Unable to filter doctors");
+      toast.error("Unable to filter doctors",{autoClose: 3000});
     } finally {
       setLoading(false);
     }
