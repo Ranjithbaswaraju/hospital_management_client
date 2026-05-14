@@ -1,3 +1,8 @@
+
+
+import { BaseUrl } from "../confige";
+
+
 export default function DoctorCard({
   doctor,
   onBook,
